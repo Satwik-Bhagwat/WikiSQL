@@ -1,5 +1,8 @@
 import load_data
 import roberta_training
+import torch
+
+device = torch.device("cuda")
 
 def encoder(roberta_model,roberta_tokenizer,roberta_config,train_loader):
     roberta_model.train()
