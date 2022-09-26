@@ -2,7 +2,7 @@ import torch
 import os
 from transformers import RobertaConfig, RobertaModel, RobertaTokenizer
 
-#device = torch.device("cuda")
+device = torch.device("cuda")
 
 def get_roberta_model():
 
