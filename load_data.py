@@ -2,7 +2,6 @@ import json
 import torch
 import os
 
-device = torch.device("cuda")
 
 def get_data(file_path: str,batch_size: int):
     '''
