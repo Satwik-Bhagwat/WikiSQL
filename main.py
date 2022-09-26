@@ -1,10 +1,10 @@
 import Roberta_train
-import load
-import Get_Models
+import load_data
+import load_model
 import train
 
-td,tt,dd,dt,tl,dl = load.get_data('.',2)
+td,tt,dd,dt,tl,dl = load_data.get_data('.',2)
 
-rm,t,rc = Get_Models.get_roberta_model()
+rm,t,rc = load_model.get_roberta_model()
 
 train.encoder(rm,t,rc,tl)
