@@ -98,12 +98,12 @@ def get_fields(data, header_tokenization=False, sql_tokenization=False):
         
     return natural_language_utterance,tokenized_natural_language_utterance,sql_indexing,sql_query,tokenized_sql_query,table_indices,tokenized_headers,headers
 
-td,tt,dd,dt,tl,dl = get_data('.',16)
-print(len(tl))
-i=0
-for bi,b in enumerate(tl):
-    if(i==1):
-        break
-    i+=1
-    print(bi)
-    print(b[0])
+# td,tt,dd,dt,tl,dl = get_data('.',16)
+# print(len(tl))
+# i=0
+# for bi,b in enumerate(tl):
+#     if(i==1):
+#         break
+#     i+=1
+#     print(bi)
+#     print(b[0])
