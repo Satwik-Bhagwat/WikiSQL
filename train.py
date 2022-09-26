@@ -1,5 +1,5 @@
-import load
-import Roberta_train
+import load_data
+import roberta_training
 
 def encoder(roberta_model,roberta_tokenizer,roberta_config,train_loader):
     roberta_model.train()
@@ -18,7 +18,7 @@ def encoder(roberta_model,roberta_tokenizer,roberta_config,train_loader):
         # tb   : table metadata. No row data needed
         # hs_t : tokenized headers. Not used.
         natural_lang_utterance, natural_lang_utterance_tokenized, sql_canonical, \
-            _, _, table_metadata, _, headers = load.get_fields(batch)
+            _, _, table_metadata, _, headers = load_data.get_fields(batch)
 
 
         # select_column_ground, select_agg_ground, where_number_ground, \
@@ -28,7 +28,7 @@ def encoder(roberta_model,roberta_tokenizer,roberta_config,train_loader):
 
         natural_lang_embeddings, header_embeddings, question_token_length, header_token_length, header_count, \
         natural_lang_double_tokenized, punkt_to_roberta_token_indices, roberta_to_punkt_token_indices \
-            = Roberta_train.get_wemb_roberta(roberta_config, roberta_model, roberta_tokenizer, 
+            = roberta_training.get_wemb_roberta(roberta_config, roberta_model, roberta_tokenizer, 
                                         natural_lang_utterance_tokenized, headers,max_seq_length= 222,
                                         num_out_layers_n=2, num_out_layers_h=2)
 
