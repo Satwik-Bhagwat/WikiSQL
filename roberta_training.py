@@ -81,11 +81,9 @@ def get_wemb_roberta(roberta_config, model_roberta, tokenizer, nlu_t, hds, max_s
     # i_headers: start and end indices of headers
 
     # get the wemb
-    wemb_n = get_wemb_n(i_nlu, l_n, roberta_config.hidden_size, roberta_config.num_hidden_layers, all_encoder_layer,
-                        num_out_layers_n)
+    wemb_n = get_wemb_n(i_nlu, l_n, roberta_config.hidden_size, roberta_config.num_hidden_layers, all_encoder_layer, num_out_layers_n)
 
-    wemb_h = get_wemb_h(i_headers, l_hpu, l_hs, roberta_config.hidden_size, roberta_config.num_hidden_layers, all_encoder_layer,
-                        num_out_layers_h)
+    wemb_h = get_wemb_h(i_headers, l_hpu, l_hs, roberta_config.hidden_size, roberta_config.num_hidden_layers, all_encoder_layer, num_out_layers_h)
 
     return wemb_n, wemb_h, l_n, l_hpu, l_hs, \
            nlu_tt, t_to_tt_idx, tt_to_t_idx
