@@ -1,14 +1,17 @@
 import json
 import torch
 import os
-
+import json
+from matplotlib.pylab import *
 
 def get_data(file_path: str,batch_size: int):
     '''
     Gets data from the dataset and creates a data loader
+
     Arguments:
     file_path: The path to the directory in which the dataset is contained
     batch_size: Batch size to be used for the data loaders
+
     Returns:
     train_data: Training dataset (Natural Language utterances)
     train_table: Training tables (Table schema and table data) 
@@ -63,6 +66,54 @@ def get_data(file_path: str,batch_size: int):
 
     return train_data, train_table, dev_data, dev_table, train_loader, dev_loader
 
+def get_test_data(file_path: str,batch_size: int):
+    test_data=[]
+    test_table = {}
+    
+    with open(file_path + '/test_knowledge.jsonl') as test_data_file:
+        for idx, line in enumerate(test_data_file):
+            current_line = json.loads(line.strip())
+            test_data.append(current_line)
+
+    with open(file_path + '/test.tables.jsonl') as test_table_file:
+        for idx, line in enumerate(test_table_file):
+            current_line = json.loads(line.strip())
+            test_table[current_line['id']] = current_line
+
+    test_loader = torch.utils.data.DataLoader(
+        batch_size=batch_size,
+        dataset=test_data,
+        shuffle=True,
+        num_workers=4,
+        collate_fn=lambda x: x  # now dictionary values are not merged!
+    )
+    
+    return test_data,test_table,test_loader
+
+def get_zero_data(file_path: str,batch_size: int):
+    test_data=[]
+    test_table = {}
+    
+    with open(file_path + '/zero.jsonl') as test_data_file:
+        for idx, line in enumerate(test_data_file):
+            current_line = json.loads(line.strip())
+            test_data.append(current_line)
+
+    with open(file_path + '/test.tables.jsonl') as test_table_file:
+        for idx, line in enumerate(test_table_file):
+            current_line = json.loads(line.strip())
+            test_table[current_line['id']] = current_line
+
+    test_loader = torch.utils.data.DataLoader(
+        batch_size=batch_size,
+        dataset=test_data,
+        shuffle=True,
+        num_workers=4,
+        collate_fn=lambda x: x  # now dictionary values are not merged!
+    )
+    
+    return test_data,test_table,test_loader
+
 
 def get_fields(data, header_tokenization=False, sql_tokenization=False):
 
@@ -99,12 +150,3 @@ def get_fields(data, header_tokenization=False, sql_tokenization=False):
         
     return natural_language_utterance,tokenized_natural_language_utterance,sql_indexing,sql_query,tokenized_sql_query,table_indices,tokenized_headers,headers
 
-# td,tt,dd,dt,tl,dl = get_data('.',16)
-# print(len(tl))
-# i=0
-# for bi,b in enumerate(tl):
-#     if(i==1):
-#         break
-#     i+=1
-#     print(bi)
-#     print(b[0])
