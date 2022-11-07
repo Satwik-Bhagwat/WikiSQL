@@ -8,9 +8,10 @@ def encoder(roberta_model,roberta_tokenizer,roberta_config,train_loader):
     roberta_model.train()
 
     count = 0
+    i=0
 
     for batch_index, batch in enumerate((train_loader)):
-        if count > 50:
+        if i:
             break
         count += len(batch)
 
@@ -40,7 +41,7 @@ def encoder(roberta_model,roberta_tokenizer,roberta_config,train_loader):
         print("embeddings: ", natural_lang_embeddings)
         print(header_embeddings,"\n",question_token_length, header_token_length, header_count, "\n",natural_lang_double_tokenized, punkt_to_roberta_token_indices, roberta_to_punkt_token_indices)
 
-
+        i+=1
 
 
 # def train(seq2sql_model,roberta_model,model_optimizer,roberta_optimizer,roberta_tokenizer,roberta_config,path_wikisql,train_loader):
