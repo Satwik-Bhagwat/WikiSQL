@@ -35,7 +35,8 @@ def encoder(roberta_model,roberta_tokenizer,roberta_config,train_loader):
                                         natural_lang_utterance_tokenized, headers,max_seq_length= 222,
                                         num_out_layers_n=2, num_out_layers_h=2)
 
-
+        print(natural_lang_embeddings)
+        print(header_embeddings,"\n",question_token_length, header_token_length, header_count, "\n",natural_lang_double_tokenized, punkt_to_roberta_token_indices, roberta_to_punkt_token_indices)
 
 
 
