@@ -37,9 +37,17 @@ def encoder(roberta_model,roberta_tokenizer,roberta_config,train_loader):
             = roberta_training.get_wemb_roberta(roberta_config, roberta_model, roberta_tokenizer, 
                                         natural_lang_utterance_tokenized, headers,max_seq_length= 222,
                                         num_out_layers_n=2, num_out_layers_h=2)
+        print("utterance",natural_lang_utterance)
+        print("headers",headers)
 
         print("embeddings: ", natural_lang_embeddings)
-        print(header_embeddings,"\n",question_token_length, header_token_length, header_count, "\n",natural_lang_double_tokenized, punkt_to_roberta_token_indices, roberta_to_punkt_token_indices)
+        print("header embeddings",header_embeddings)
+        print("question token len",question_token_length)
+        print("header token len",header_token_length)
+        print("header count",header_count)
+        print("double", natural_lang_double_tokenized)
+        print("punkt",punkt_to_roberta_token_indices)
+        print("roberta punkt",roberta_to_punkt_token_indices)
 
         i+=1
 
