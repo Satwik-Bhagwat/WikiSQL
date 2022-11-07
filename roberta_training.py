@@ -121,7 +121,7 @@ def get_roberta_output(model_roberta, tokenizer, nlu_t, headers, max_seq_length)
     t_to_tt_idx = []
     tt_to_t_idx = []
     for b, nlu_t1 in enumerate(nlu_t):
-
+        print("nlu_t1",nlu_t1)
         batch_headers = headers[b]
         l_hs.append(len(batch_headers))
 
@@ -135,6 +135,7 @@ def get_roberta_output(model_roberta, tokenizer, nlu_t, headers, max_seq_length)
                 len(nlu_tt1))  
             sub_tokens = tokenizer.tokenize(token, is_pretokenized=True)
             print("sub_tokens",sub_tokens)
+            print("token",token)
             for sub_token in sub_tokens:
                 tt_to_t_idx1.append(i)
                 nlu_tt1.append(sub_token) 
